@@ -94,22 +94,43 @@ scene.add(head2);
 head1.rotateX(THREE.Math.degToRad(-15));
 head2.rotateX(THREE.Math.degToRad(25));
 
+// BRAIN
+// BRA = BRAIN
+let BRAradius = 7.91;
+let BRAwidth = 32;
+let BRAheight = 32;
+let BRAphiStart = 0;
+let BRAphiLength = Math.PI ;
+let BRAthetaStart = 0;
+let BRAthetaLength = Math.PI;
+
+const brainGeometry = new THREE.SphereGeometry(BRAradius, BRAwidth, BRAheight, BRAphiStart, BRAphiLength, BRAthetaStart, BRAthetaLength)
+const brainMaterial = new THREE.MeshBasicMaterial( {color: 0x0000} );
+const brain = new THREE.Mesh(brainGeometry, brainMaterial);
+brain.position.x = -0;
+brain.position.y = 5;
+brain.position.z = -5;
+scene.add(brain)
+
 // MOUTH
+// M = Mouth
 let Mradius = 8;
 let Mwidth = 32;
 let Mheight = 32;
 let MphiStart = 0;
-let MphiLength = Math.PI * 2;
+let MphiLength = Math.PI * 2 ;
 let MthetaStart = 0;
-let MthetaLength = Math.PI / 2;
+let MthetaLength = Math.PI / 2 ;
 
 const mouthGeometry = new THREE.SphereGeometry(Mradius, Mwidth, Mheight, MphiStart, MphiLength, MthetaStart, MthetaLength);
 const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
 mouth.position.set(-0, 5, -5);
+// to rotate/invert the semi-sphere  to create the ilusion of the mouth of the pacman
 mouth.rotation.x = Math.PI / true;
 scene.add(mouth);
 mouth.rotateX(THREE.Math.degToRad(-5));
+mouth.add(axesHelper)
 
 // EYES
 let Eyeradius = 1;
@@ -130,13 +151,33 @@ const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 rightEye.position.set(2, 9, 1);
 scene.add(rightEye)
 
+// ------------------------------------------ARMS SECTION --------------------------------------------------------------
+// SHOULDER
+const BoxGeometry = new THREE.BoxGeometry(4, 2, 4);
+const BoxMaterial = new THREE.MeshBasicMaterial( {color:0xff0000 } );
+const LeftShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
+LeftShoulder.position.x = -7;
+LeftShoulder.position.y = 7;
+LeftShoulder.position.z = -6;
+scene.add(LeftShoulder);
+// LeftShoulder.add(axesHelper)
+const RigthShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
+RigthShoulder.position.x = 7;
+RigthShoulder.position.y = 7;
+RigthShoulder.position.z = -6;
+scene.add(RigthShoulder);
+RigthShoulder.add(axesHelper)
+// ------------------------------------------------------------------------------------
+
 function animate() {
+
+    mouth.rotation.x -= 0.05;
+    
+    renderer.render(scene, camera);
 
     requestAnimationFrame(animate)
 
-    mouth.rotation.x -= 0.05;
 
-    renderer.render(scene, camera);
 }
 
 animate();

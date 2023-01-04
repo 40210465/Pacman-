@@ -1,0 +1,7 @@
+animate the mouth (x)
+
+make the left arm for the pacman with pivots for articulated movement ()
+
+make the right arm for the pacman with pivots for articulated movement ()
+
+insert a black sphere inside the pacman to hide the objects pivots for the shoulders ()
