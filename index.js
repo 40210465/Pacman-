@@ -1,6 +1,7 @@
 import * as THREE from './libs/three.module.js'
 import * as OrbitControls from './libs/OrbitControls.js'
 
+
 // global variables
 let canvas, scene, camera, renderer;
 
@@ -70,6 +71,7 @@ let size = 45;
 const axesHelper = new THREE.AxesHelper( size );
 // scene.add( axesHelper );
 
+// -----------------------------------PACMAN------------------------------------------
 // BODY
 // B = Body
 let Bradius = 8;
@@ -145,7 +147,6 @@ leftEye.position.set(-2, 9, 1);
 scene.add(leftEye)
 // leftEye.add(axesHelper)
 
-
 // RIGHT EYE
 const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 rightEye.position.set(2, 9, 1);
@@ -153,32 +154,47 @@ scene.add(rightEye)
 
 // ------------------------------------------ARMS SECTION --------------------------------------------------------------
 // SHOULDER
-const BoxGeometry = new THREE.BoxGeometry(4, 2, 4);
-const BoxMaterial = new THREE.MeshBasicMaterial( {color:0xff0000 } );
+const BoxGeometry = new THREE.BoxGeometry(4, 2, 2);
+const BoxMaterial = new THREE.MeshBasicMaterial( {color:0xffffe0  } );
 const LeftShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
-LeftShoulder.position.x = -7;
-LeftShoulder.position.y = 7;
-LeftShoulder.position.z = -6;
+LeftShoulder.position.set(-7.2, 7, -5)
 scene.add(LeftShoulder);
 // LeftShoulder.add(axesHelper)
-const RigthShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
-RigthShoulder.position.x = 7;
-RigthShoulder.position.y = 7;
-RigthShoulder.position.z = -6;
-scene.add(RigthShoulder);
-RigthShoulder.add(axesHelper)
+
+// pivot for the left shoulder
+const LeftShoulderPivot = new THREE.Object3D();
+LeftShoulderPivot.position.set(1.5, 5, 2);
+LeftShoulder.add(LeftShoulderPivot);
+LeftShoulder.add(axesHelper);
+
+// sphere for the left shoulder
+let leftSphereRadius = 1;
+let leftSphereWidth = 12;
+let leftSphereHeight = 12;
+
+const leftShoulderSphereGeometry = new THREE.SphereGeometry(leftSphereRadius, leftSphereWidth, leftSphereHeight)
+const leftShoulderSphereMaterial = new THREE.MeshBasicMaterial( {color:0xff0000});
+const  leftShoulderSphere = new THREE.Mesh(leftShoulderSphereGeometry, leftShoulderSphereMaterial)
+leftShoulderSphere.rotation.x = 3.17;
+LeftShoulderPivot.add(leftShoulderSphere);
+
+// const RigthShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
+// RigthShoulder.position.set(7.5, 7, -6)
+// scene.add(RigthShoulder);
+// RigthShoulder.add(axesHelper)
+
 // ------------------------------------------------------------------------------------
 
-function animate() {
+// function animate() {
 
-    mouth.rotation.x -= 0.05;
+//     mouth.rotation.x -= 0.05;
     
-    renderer.render(scene, camera);
+//     renderer.render(scene, camera);
 
-    requestAnimationFrame(animate)
+//     requestAnimationFrame(animate)
 
 
-}
+// }
 
-animate();
+// animate();
 loop();
