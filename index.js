@@ -132,7 +132,7 @@ mouth.position.set(-0, 5, -5);
 mouth.rotation.x = Math.PI / true;
 scene.add(mouth);
 mouth.rotateX(THREE.Math.degToRad(-5));
-mouth.add(axesHelper)
+//mouth.add(axesHelper)
 
 // EYES
 let Eyeradius = 1;
@@ -163,9 +163,9 @@ scene.add(LeftShoulder);
 
 // pivot for the left shoulder
 const LeftShoulderPivot = new THREE.Object3D();
-LeftShoulderPivot.position.set(1.5, 5, 2);
+LeftShoulderPivot.position.set(1.5 , .5, 4.5);
 LeftShoulder.add(LeftShoulderPivot);
-LeftShoulder.add(axesHelper);
+//LeftShoulder.add(axesHelper);
 
 // sphere for the left shoulder
 let leftSphereRadius = 1;
@@ -177,6 +177,7 @@ const leftShoulderSphereMaterial = new THREE.MeshBasicMaterial( {color:0xff0000}
 const  leftShoulderSphere = new THREE.Mesh(leftShoulderSphereGeometry, leftShoulderSphereMaterial)
 leftShoulderSphere.rotation.x = 3.17;
 LeftShoulderPivot.add(leftShoulderSphere);
+LeftShoulderPivot.add(axesHelper)
 
 // const RigthShoulder = new THREE.Mesh(BoxGeometry, BoxMaterial);
 // RigthShoulder.position.set(7.5, 7, -6)

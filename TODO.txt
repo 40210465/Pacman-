@@ -2,6 +2,18 @@ animate the mouth (x)
 
 make the left arm for the pacman with pivots for articulated movement ()
 
+rotate the pivots of the left arm / articulated left arm  ()
+
+rotate the pivots of the right arm / articulated right arm ()
+
+set the right position of the pivot for the left shoulder ()
+
+textures for the left arm ()
+
+textures for the right arm ()
+
+group all the meshs of the pacman with the THREE.Group class ()
+
 make the right arm for the pacman with pivots for articulated movement ()
 
 insert a black sphere inside the pacman to hide the objects pivots for the shoulders (x)
