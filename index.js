@@ -32,7 +32,7 @@ const loop = () => {
     window.requestAnimationFrame(loop);
 }
 
-// ADD LIGHTS TO SCENE
+// ADD LIGHTS TO SCENE WITH FOR NO BASIC MATERIAL (meshBasicMaterial)
 // let color = 0xFFFFFF;
 // let intensity = 1;
 // let distance = 100;
@@ -67,7 +67,7 @@ renderer.setSize(renderWidth, renderHeigth);
 renderer.render(scene, camera);  
 
 // AXES HELPER
-let size = 45;
+let size = 10;
 const axesHelper = new THREE.AxesHelper( size );
 // scene.add( axesHelper );
 
@@ -96,6 +96,7 @@ head2.rotation.x = Math.PI / true;
 scene.add(head2);
 head1.rotateX(THREE.Math.degToRad(-15));
 head2.rotateX(THREE.Math.degToRad(25));
+
 // -------------------------------------------------BRAIN -------------------------------
 // BRA = BRAIN
 let BRAradius = 7.91;
@@ -113,6 +114,7 @@ brain.position.x = -0;
 brain.position.y = 5;
 brain.position.z = -5;
 scene.add(brain)
+
 // ---------------------------------------MOUTH-------------------------------------------
 // M = Mouth
 let Mradius = 8;
@@ -132,6 +134,7 @@ mouth.rotation.x = Math.PI / true;
 scene.add(mouth);
 mouth.rotateX(THREE.Math.degToRad(-5));
 //mouth.add(axesHelper)
+
 //----------------------------------------------- EYES SECTION -------------------------
 let Eyeradius = 1;
 let Eyewidth = 12;
@@ -149,33 +152,67 @@ scene.add(leftEye)
 const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 rightEye.position.set(2, 9, 1);
 scene.add(rightEye)
+
 // ------------------------------------------ARMS SECTION --------------------------------------------------------------
 // -------------------------------------------------LEFT SHOULDER----------------------
-// geometry left shoulder
-const leftShoulderGeometry = new THREE.BoxGeometry(4, 2, 2);
+// GEOMETRY LEFT ARM
+const leftShoulderGeometry = new THREE.BoxGeometry(6, 2.4, 2.8);
 const leftShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
-// material left shoulder
-const leftShoulderMaterial = new THREE.MeshBasicMaterial({color: 0xffa500 });
+
+// variales for the parameters for the cylinder of the forearm
+// FA - FOREARM
+let FAradiusTop = 0.53;
+let FAradiusBottom = 0.87;
+let FAheight = 12.642;
+let FAradialSegments = 44;
+let FAheightSegments = 25;
+let FAthetaStart = 0;
+let FAthetaLength = 6.28;
+
+const leftForeArmGeometry = new THREE.CylinderGeometry(
+    FAradiusTop, FAradiusBottom, FAheight, FAradialSegments, FAheightSegments,
+    FAthetaStart, FAthetaLength
+);
+
+// MATERIAL LEFT ARM
+const leftShoulderMaterial = new THREE.MeshBasicMaterial({color: 0xffff00 });
 const leftShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
+const leftForeArmMaterial = new THREE.MeshBasicMaterial({color: 0x8b7704});
 
 // mesh left shoulder
 const leftShoulder = new THREE.Mesh(leftShoulderGeometry, leftShoulderMaterial);
-leftShoulder.position.set(-7.2, 7, -5);
+leftShoulder.position.set(-7, 7, -5);
 scene.add(leftShoulder);
 
 // add pivot inside the shoulder
 const leftShoulderPivot = new THREE.Object3D();
 leftShoulderPivot.position.set(-1, 0, 0);
 leftShoulder.add(leftShoulderPivot);
-leftShoulderPivot.add(axesHelper)
+// leftShoulderPivot.add(axesHelper)
 
+//shpere for the shoulder 
 const leftShoulderSphere = new THREE.Mesh(leftShoulderSphereGeometry, leftShoulderSphereMaterial);
 scene.add(leftShoulderSphere);
 leftShoulderPivot.add(leftShoulderSphere)
 // leftShoulderSphere.add(axesHelper)
 
+// add pivot to connect the shpere with the left forearm
+const leftForeArmPivot = new THREE.Object3D();
+leftForeArmPivot.position.x = 0;
+leftForeArmPivot.position.y = 0;
+leftForeArmPivot.rotation.x = 0;
+leftShoulderSphere.add(leftForeArmPivot);
+// leftForeArmPivot.add(axesHelper);
+
+//mesh left forearm
+const leftForeArm = new THREE.Mesh(leftForeArmGeometry, leftForeArmMaterial); 
+leftForeArm.position.z = 5.35;
+leftForeArmPivot.add(leftForeArm);
+// to rotate the cylinder form for the left foreArm on x axis
+leftForeArm.rotation.x = 1.55;
 
 // ------------------------------------------------------------------------------------
+//--------------------------------------- ANIMATION SECTION----------------------------
 // velocity of the movement of the arm
 let VelocityMovement = 0.01;
 // rotation forms
@@ -188,23 +225,22 @@ leftShoulderPivot.rotation.x = 1.55;
 // to animate the left shoulder
 let animateLeftArm = () => {
     if (leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) {
-                // to control the rotation
+// to control the rotation
     VelocityMovement = VelocityMovement * -1
     };
-            // rotation of the left shoulder on x axis
+    // rotation of the left shoulder on x axis
     leftShoulderSphere.rotation.x += VelocityMovement;
 }
 
 let animate = () => {
     requestAnimationFrame(animate)
 
-    // animateLeftArm()
+    animateLeftArm()
 
     // mouth.rotation.x -= 0.05;
 
     renderer.render(scene, camera);
 }
-
 
 animate();
 loop();
