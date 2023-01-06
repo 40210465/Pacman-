@@ -163,7 +163,7 @@ const leftShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
 // FA - FOREARM
 let FAradiusTop = 0.53;
 let FAradiusBottom = 0.87;
-let FAheight = 12.642;
+let FAheight = 6;
 let FAradialSegments = 44;
 let FAheightSegments = 25;
 let FAthetaStart = 0;
@@ -175,9 +175,9 @@ const leftForeArmGeometry = new THREE.CylinderGeometry(
 );
 
 // MATERIAL LEFT ARM
-const leftShoulderMaterial = new THREE.MeshBasicMaterial({color: 0xffff00 });
+const leftShoulderMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114 });
 const leftShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-const leftForeArmMaterial = new THREE.MeshBasicMaterial({color: 0x8b7704});
+const leftForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
 // mesh left shoulder
 const leftShoulder = new THREE.Mesh(leftShoulderGeometry, leftShoulderMaterial);
@@ -206,10 +206,15 @@ leftShoulderSphere.add(leftForeArmPivot);
 
 //mesh left forearm
 const leftForeArm = new THREE.Mesh(leftForeArmGeometry, leftForeArmMaterial); 
-leftForeArm.position.z = 5.35;
+leftForeArm.position.z = 4;
 leftForeArmPivot.add(leftForeArm);
-// to rotate the cylinder form for the left foreArm on x axis
-leftForeArm.rotation.x = 1.55;
+
+//  add pivot to the end of the left forearm
+const SecondleftForeArmPivot = new THREE.Object3D();
+SecondleftForeArmPivot.position.x = 0.05;
+SecondleftForeArmPivot.position.y = 2.8;
+leftForeArm.add(SecondleftForeArmPivot)
+SecondleftForeArmPivot.add(axesHelper);
 
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
@@ -218,6 +223,7 @@ let VelocityMovement = 0.01;
 // rotation forms
 leftShoulder.rotation.x = 1.55;
 leftShoulderSphere.rotation.x = 3.17;
+leftForeArm.rotation.x = 1.55;
 // rotation pivots
 leftShoulderPivot.rotation.x = 0;
 leftShoulderPivot.rotation.x = 1.55;
@@ -235,7 +241,7 @@ let animateLeftArm = () => {
 let animate = () => {
     requestAnimationFrame(animate)
 
-    animateLeftArm()
+    // animateLeftArm()
 
     // mouth.rotation.x -= 0.05;
 
