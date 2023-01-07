@@ -219,7 +219,7 @@ SecondleftForeArmPivot.add(axesHelper);
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
 // velocity of the movement of the arm
-let VelocityMovement = 0.01;
+let VelocityMovement = 0.005;
 // rotation forms
 leftShoulder.rotation.x = 1.55;
 leftShoulderSphere.rotation.x = 3.17;
