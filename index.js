@@ -230,21 +230,25 @@ leftShoulderPivot.rotation.x = 1.55;
 
 // to animate the left shoulder
 let animateLeftArm = () => {
-    if (leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) {
-// to control the rotation
-    VelocityMovement = VelocityMovement * -1
-    };
     // rotation of the left shoulder on x axis
     leftShoulderSphere.rotation.x += VelocityMovement;
+
+    if (leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) {
+// to control the rotation
+    VelocityMovement = VelocityMovement * -1    
+}
+
+
 }
 
 let animate = () => {
     requestAnimationFrame(animate)
 
-    // animateLeftArm()
+    animateLeftArm()
 
-    // mouth.rotation.x -= 0.05;
+    mouth.rotation.x -= 0.05;
 
+    controls.update()
     renderer.render(scene, camera);
 }
 
