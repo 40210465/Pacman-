@@ -18,7 +18,6 @@ make the right arm for the pacman with pivots for articulated movement ()
 
 insert a black sphere inside the pacman to hide the objects pivots for the shoulders (x)
 
-*opiconal = rotate the arm for each 3 seconds
 --------------------------------------------------------------------------------------------------------------------
 FINAL MODEL TO IMPLEMENT ON THE GAME
 
