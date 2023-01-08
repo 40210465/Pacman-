@@ -50,7 +50,6 @@
             // add the output of the renderer to an HTML element (this case, the body)
             document.body.appendChild(renderer.domElement);
 
-
             /**********************************************************************************
              * ROBOTIC ARM: SHOULDER (pivot) -> ARM (mesh) -> ELBOW (pivot) -> FOREARM (mesh)
              * ********************************************************************************/
@@ -67,7 +66,6 @@
             // let axesShoulder = new THREE.AxesHelper(4);
             // shoulder.add(axesShoulder);
 
-
             /* ARM */
             let arm = new THREE.Mesh(geometry, material);
             arm.position.x = 1
@@ -78,7 +76,6 @@
             // let axesArm = new THREE.AxesHelper(2);
             // arm.add(axesArm);
 
-
             /* ELBOW */
             elbow = new THREE.Object3D();
             arm.add(elbow); // add the ELBOW to the ARM
@@ -87,7 +84,6 @@
             // // show axes for the SHOULDER CS
             // let axesElbow = new THREE.AxesHelper(4);
             // elbow.add(axesElbow);
-
 
             /* FOREARM */
             let forearm = new THREE.Mesh(geometry, material);
@@ -98,7 +94,6 @@
             // // show axes for the FOREARM CS
             // let axesForearm = new THREE.AxesHelper(2);
             // forearm.add(axesForearm);
-
 
             /*****************************
              * ANIMATE 
@@ -160,9 +155,11 @@
                 shoulderZdown = true;
             }
 
+            // 
             if (event.key == 'e') {
                 elbowZup = true;
             }
+            // 
             else if (event.key == 'E') {
                 elbowZdown = true;
             }
