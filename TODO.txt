@@ -6,7 +6,7 @@ make the left arm for the pacman with pivots for articulated movement (x)
 
 rotate the pivots of the left arm / articulated left arm  (x)
 
-rotate the pivots for the left fingers hand / articulated left hand ()
+rotate the pivots for the left fingers hand / articulated left hand (x)
 
 rotate the pivots for the right fingers hand / articulated right hand ()
 
