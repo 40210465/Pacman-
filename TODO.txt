@@ -24,13 +24,3 @@ FINAL MODEL TO IMPLEMENT ON THE GAME
 CREATE NEW PACMAN
 
 group all the meshs of the pacman with the THREE.Group class ()
-
-define color patterns for the pacman, for follow the cenario identity ()
-
-resize the pacman to implement into the scene ()
-
-textures for the left arm ()
-
-textures for the right arm ()
-
-textures for the pacman ()

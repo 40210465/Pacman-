@@ -31,17 +31,6 @@ const loop = () => {
     window.requestAnimationFrame(loop);
 }
 
-// ADD LIGHTS TO SCENE WITH FOR NO BASIC MATERIAL (meshBasicMaterial)
-// let color = 0xFFFFFF;
-// let intensity = 1;
-// let distance = 100;
-
-// const light = new THREE.PointLight(color, intensity, distance);
-
-// // position of the lights
-// light.position.set(0, 0, 20);
-// scene.add(light);
-
 // ADD THE CAMERA
 let FOV = 100; //field of view of the camera
 let aspectRatio = sizes.width / sizes.height;
@@ -71,110 +60,53 @@ const axesHelper = new THREE.AxesHelper( size );
 
 // -----------------------------------PACMAN------------------------------------------
 
-// -----------------------------------------------BODY -------------------------------
-// B = Body
-let Bradius = 8;
-let Bwidth = 32;
-let Bheight = 32;
-let BphiStart = 0;
-let BphiLength = Math.PI * 2;
-let BthetaStart = 0;
-let BthetaLength = Math.PI / 2;
+// -----------------------------------GEOMETRIES AND MATERIALS-----------------------
 
-const headGeometry = new THREE.SphereGeometry(Bradius, Bwidth, Bheight, BphiStart, BphiLength, BthetaStart, BthetaLength);
+// HEAD GEOMETRY AND MATERIAL
+const headGeometry = new THREE.SphereGeometry( 8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+
 const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });                 
-const head1 = new THREE.Mesh(headGeometry, headMaterial);
-head1.position.set(-0, 5, -5)
-scene.add(head1);
 
-const headGeometry2 = new THREE.SphereGeometry(Bradius, Bwidth, Bheight, BphiStart, BphiLength, BthetaStart, BthetaLength);
-const head2 = new THREE.Mesh(headGeometry2, headMaterial);
-head2.position.set(-0, 5, -5)
-head2.rotation.x = Math.PI / true;
-scene.add(head2);
-head1.rotateX(THREE.Math.degToRad(-15));
-head2.rotateX(THREE.Math.degToRad(25));
+const headGeometry2 = new THREE.SphereGeometry(
+    8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2
+    );
+    
+const brainGeometry = new THREE.SphereGeometry(7.91, 32, 32, 0, Math.PI, 0, Math.PI);
 
-// -------------------------------------------------BRAIN -------------------------------
-// BRA = BRAIN
-let BRAradius = 7.91;
-let BRAwidth = 32;
-let BRAheight = 32;
-let BRAphiStart = 0;
-let BRAphiLength = Math.PI ;
-let BRAthetaStart = 0;
-let BRAthetaLength = Math.PI;
-
-const brainGeometry = new THREE.SphereGeometry(BRAradius, BRAwidth, BRAheight, BRAphiStart, BRAphiLength, BRAthetaStart, BRAthetaLength)
 const brainMaterial = new THREE.MeshBasicMaterial( {color: 0x0000} );
-const brain = new THREE.Mesh(brainGeometry, brainMaterial);
-brain.position.x = -0;
-brain.position.y = 5;
-brain.position.z = -5;
-scene.add(brain)
 
-// ---------------------------------------MOUTH-------------------------------------------
-// M = Mouth
-let Mradius = 8;
-let Mwidth = 32;
-let Mheight = 32;
-let MphiStart = 0;
-let MphiLength = Math.PI * 2 ;
-let MthetaStart = 0;
-let MthetaLength = Math.PI / 2 ;
-
-const mouthGeometry = new THREE.SphereGeometry(Mradius, Mwidth, Mheight, MphiStart, MphiLength, MthetaStart, MthetaLength);
+// MOUTH GEOMETRY AND MATERIAL
+const mouthGeometry = new THREE.SphereGeometry(8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
 const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
-mouth.position.set(-0, 5, -5);
-// to rotate/invert the semi-sphere  to create the ilusion of the mouth of the pacman
-mouth.rotation.x = Math.PI / true;
-scene.add(mouth);
-mouth.rotateX(THREE.Math.degToRad(-5));
 
-//----------------------------------------------- EYES SECTION -------------------------
-let Eyeradius = 1;
-let Eyewidth = 12;
-let Eyeheight = 12;
-
-// LEFT EYE
-const EyeGeometry = new THREE.SphereGeometry(Eyeradius, Eyewidth, Eyeheight);
+// EYES GEOMETRY AND MATERIAL
+const EyeGeometry = new THREE.SphereGeometry(1, 12, 12);
 const EyeMaterial = new THREE.MeshBasicMaterial({color: 0x0000 });
-const leftEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
-leftEye.position.set(-2, 9, 1);
-scene.add(leftEye)
 
-// RIGHT EYE
-const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
-rightEye.position.set(2, 9, 1);
-scene.add(rightEye)
-// ------------------------------------------ARMS SECTION --------------------------------------------------------------
-// -------------------------------------ARM GEOMETRY ----------------------------------
+// ARMS AND SHOULDERS GEOMETRY
 const ArmGeometry = new THREE.BoxGeometry(6, 2.4, 2.8);
 const ShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
 
-// FA - ------------------------------  FOREARM GEOMETRY-----------------------
-
+// FOREARMS GEOMETRY
 const ForeArmGeometry = new THREE.CylinderGeometry(0.53, 0.87, 6, 44, 25, 0, 6.28);
 
-// ----------------------------------GEOMETRY HAND--------------
-
+// HANDS GEOMETRY
 const HandGeometry = new THREE.BoxGeometry(2, 1.95, 1);
 
-// -----------------------GEOMETRY  FINGERS HAND-----------------
+// FINGERS GEOMETRY
 const Finger1HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const Finger2HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const Finger3HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const ThumbFingerHandGeometry = new THREE.BoxGeometry( 0.55, 0.5, 1.75);
 
-// ------------------------MATERIAL  ARM------------------------------
+// ARMS AND SHOULDERS MATERIAL
 const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114, wireframe: false });
 const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
 
-// ----------------------  FOREARM MATERIAL -----------------------------
+// FOREARMS MATERIAL
 const ForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
-// ---------------------- HAND MATERIAL-----------------------------
+// HANDS MATERIAL
 const HandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: false});
  
 // ---------------------- FINGERS MATERIAL-----------------------------
@@ -195,8 +127,48 @@ const Finger2ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea7
 const Finger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
+
 //----------------------------------------- MESH AND PIVOT SECTION---------------------------------
-// -------------------------------- LEFT SIDE BODY ------------------------------------
+// -------------------------------- LEFT SIDE BODY ----
+
+// mesh first half head
+const head1 = new THREE.Mesh(headGeometry, headMaterial);
+head1.rotateX(THREE.Math.degToRad(-15));
+head1.position.set(-0, 5, -5)
+scene.add(head1);
+
+// mesh second half head
+const head2 = new THREE.Mesh(headGeometry2, headMaterial);
+head2.position.set(-0, 5, -5)
+head2.rotation.x = Math.PI / true;
+scene.add(head2);
+head2.rotateX(THREE.Math.degToRad(25));
+
+// mesh brain
+const brain = new THREE.Mesh(brainGeometry, brainMaterial);
+brain.position.x = -0;
+brain.position.y = 5;
+brain.position.z = -5;
+scene.add(brain)
+
+// mesh mouth
+const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
+mouth.position.set(-0, 5, -5);
+// to rotate/invert the semi-sphere  to create the ilusion of the mouth of the pacman
+mouth.rotation.x = Math.PI / true;
+scene.add(mouth);
+mouth.rotateX(THREE.Math.degToRad(-5));
+
+// mesh leftEye
+const leftEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
+leftEye.position.set(-2, 9, 1);
+scene.add(leftEye)
+
+// mesh rightEye 
+const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
+rightEye.position.set(2, 9, 1);
+scene.add(rightEye)
+
 // mesh left Arm
 const leftArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 leftArm.position.set(-7, 7, -5);
@@ -301,7 +273,8 @@ connectThirdLeftFingerPivot.position.y = 1;
 const thumbFingerLeftHand = new THREE.Mesh(ThumbFingerHandGeometry, ThumbFingerHandMaterial);
 leftThumbFingerConnection.add(thumbFingerLeftHand);
 leftThumbFingerConnection.position.x = -0.7;
-// -------------------------------- RIGHT SIDE BODY -------------------------------------
+
+// -------------------------------- RIGHT SIDE BODY -----
 // mesh right Arm
 const rightArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 rightArm.position.set(7, 7, -5);
@@ -407,6 +380,10 @@ connectThirdRightFingerPivot.position.y = 1;
 const thumbFingerRightHand = new THREE.Mesh(ThumbFingerHandGeometry, ThumbFingerHandMaterial);
 rightThumbFingerConnection.add(thumbFingerRightHand);
 rightThumbFingerConnection.position.x = 0.7;
+
+// ---------------------------------------------PACMAN MODEL ------------------------
+const Pacman = new THREE.Group();
+Pacman.add()
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
 let velocityMovementArm = 0.004;
@@ -493,11 +470,11 @@ let animateFingers = () => {
 let animate = () => {
     requestAnimationFrame(animate)
 
-    animateArmShoulders()
+    // animateArmShoulders()
     // to animate the fingers
-    animateFingers()
+    // animateFingers()
 
-    mouth.rotation.x -= 0.05;
+    // mouth.rotation.x -= 0.05;
 
     controls.update()
     renderer.render(scene, camera);
