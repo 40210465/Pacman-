@@ -23,4 +23,4 @@ FINAL MODEL TO IMPLEMENT ON THE GAME
 
 CREATE NEW PACMAN
 
-group all the meshs of the pacman with the THREE.Group class ()
+group all the meshs of the pacman with the THREE.Group class (x)

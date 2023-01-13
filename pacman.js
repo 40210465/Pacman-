@@ -135,13 +135,11 @@ const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0x
 const head1 = new THREE.Mesh(headGeometry, headMaterial);
 head1.rotateX(THREE.Math.degToRad(-15));
 head1.position.set(-0, 5, -5)
-scene.add(head1);
 
 // mesh second half head
 const head2 = new THREE.Mesh(headGeometry2, headMaterial);
 head2.position.set(-0, 5, -5)
 head2.rotation.x = Math.PI / true;
-scene.add(head2);
 head2.rotateX(THREE.Math.degToRad(25));
 
 // mesh brain
@@ -149,30 +147,25 @@ const brain = new THREE.Mesh(brainGeometry, brainMaterial);
 brain.position.x = -0;
 brain.position.y = 5;
 brain.position.z = -5;
-scene.add(brain)
 
 // mesh mouth
 const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
 mouth.position.set(-0, 5, -5);
 // to rotate/invert the semi-sphere  to create the ilusion of the mouth of the pacman
 mouth.rotation.x = Math.PI / true;
-scene.add(mouth);
 mouth.rotateX(THREE.Math.degToRad(-5));
 
 // mesh leftEye
 const leftEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 leftEye.position.set(-2, 9, 1);
-scene.add(leftEye)
 
 // mesh rightEye 
 const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 rightEye.position.set(2, 9, 1);
-scene.add(rightEye)
 
 // mesh left Arm
 const leftArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 leftArm.position.set(-7, 7, -5);
-scene.add(leftArm);
 
 // add pivot on the begin of the left arm/shoulder
 const leftShoulderPivot = new THREE.Object3D();
@@ -278,7 +271,6 @@ leftThumbFingerConnection.position.x = -0.7;
 // mesh right Arm
 const rightArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 rightArm.position.set(7, 7, -5);
-scene.add(rightArm);
 
 // add pivot on the begin of the right arm/shoulder
 const rightShoulderPivot = new THREE.Object3D();
@@ -382,8 +374,14 @@ rightThumbFingerConnection.add(thumbFingerRightHand);
 rightThumbFingerConnection.position.x = 0.7;
 
 // ---------------------------------------------PACMAN MODEL ------------------------
+
 const Pacman = new THREE.Group();
-Pacman.add()
+Pacman.add( head1, head2, leftArm, rightArm, brain, leftEye, rightEye, mouth );
+scene.add(Pacman);
+
+Pacman.position.set(0, 0 , 0)
+Pacman.scale.set(1, 1, 1)
+
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
 let velocityMovementArm = 0.004;
@@ -470,11 +468,10 @@ let animateFingers = () => {
 let animate = () => {
     requestAnimationFrame(animate)
 
-    // animateArmShoulders()
-    // to animate the fingers
-    // animateFingers()
+    animateArmShoulders()
+    animateFingers()
 
-    // mouth.rotation.x -= 0.05;
+    mouth.rotation.x -= 0.05;
 
     controls.update()
     renderer.render(scene, camera);
