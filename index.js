@@ -68,7 +68,6 @@ renderer.render(scene, camera);
 // AXES HELPER
 let size = 10;
 const axesHelper = new THREE.AxesHelper( size );
-// scene.add( axesHelper );
 
 // -----------------------------------PACMAN------------------------------------------
 
@@ -132,7 +131,6 @@ mouth.position.set(-0, 5, -5);
 mouth.rotation.x = Math.PI / true;
 scene.add(mouth);
 mouth.rotateX(THREE.Math.degToRad(-5));
-//mouth.add(axesHelper)
 
 //----------------------------------------------- EYES SECTION -------------------------
 let Eyeradius = 1;
@@ -145,75 +143,61 @@ const EyeMaterial = new THREE.MeshBasicMaterial({color: 0x0000 });
 const leftEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 leftEye.position.set(-2, 9, 1);
 scene.add(leftEye)
-// leftEye.add(axesHelper)
 
 // RIGHT EYE
 const rightEye = new THREE.Mesh(EyeGeometry, EyeMaterial);
 rightEye.position.set(2, 9, 1);
 scene.add(rightEye)
-
 // ------------------------------------------ARMS SECTION --------------------------------------------------------------
+// -------------------------------------ARM GEOMETRY ----------------------------------
+const ArmGeometry = new THREE.BoxGeometry(6, 2.4, 2.8);
+const ShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
 
-// -------------------------------------------------LEFT ARM SECTION------------------------------------
-// GEOMETRY LEFT ARM
-const leftArmGeometry = new THREE.BoxGeometry(6, 2.4, 2.8);
-const leftShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
+// FA - ------------------------------  FOREARM GEOMETRY-----------------------
 
-// variales for the parameters for the cylinder of the forearm
-// FA - ------------------------------ LEFT FOREARM GEOMETRY-----------------------
-let FAradiusTop = 0.53;
-let FAradiusBottom = 0.87;
-let FAheight = 6;
-let FAradialSegments = 44;
-let FAheightSegments = 25;
-let FAthetaStart = 0;
-let FAthetaLength = 6.28;
+const ForeArmGeometry = new THREE.CylinderGeometry(0.53, 0.87, 6, 44, 25, 0, 6.28);
 
-const leftForeArmGeometry = new THREE.CylinderGeometry(
-    FAradiusTop, FAradiusBottom, FAheight, FAradialSegments, FAheightSegments,
-    FAthetaStart, FAthetaLength
-);
+// ----------------------------------GEOMETRY HAND--------------
 
-// ----------------------------------GEOMETRY LEFT HAND--------------
-const leftHandGeometry = new THREE.BoxGeometry(2, 1.8, 1);
+const HandGeometry = new THREE.BoxGeometry(2, 1.95, 1);
 
-// -----------------------GEOMETRY LEFT FINGERS HAND-----------------
-const leftFinger1HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
-const leftFinger2HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
-const leftFinger3HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
-const leftThumbFingerHandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
+// -----------------------GEOMETRY  FINGERS HAND-----------------
+const Finger1HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
+const Finger2HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
+const Finger3HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
+const ThumbFingerHandGeometry = new THREE.BoxGeometry( 0.55, 0.5, 1.75);
 
-// ------------------------MATERIAL LEFT ARM------------------------------
-const leftArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114 });
-const leftShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
+// ------------------------MATERIAL  ARM------------------------------
+const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114 });
+const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
 
-// ---------------------- LEFT FOREARM MATERIAL
-const leftForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+// ----------------------  FOREARM MATERIAL -----------------------------
+const ForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
-// ----------------------LEFT HAND MATERIAL-----------------------------
-const leftHandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: true});
+// ---------------------- HAND MATERIAL-----------------------------
+const HandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: false});
  
-// ----------------------LEFT FINGERS MATERIAL-----------------------------
-const leftFinger1HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const leftFinger2HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const leftFinger3HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const leftThumbFingERMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+// ---------------------- FINGERS MATERIAL-----------------------------
+const Finger1HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const Finger2HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const Finger3HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const ThumbFingerHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
-// ----------------------LEFT FINGERS CONNECTION GEOMETRY-----------------------------
-const leftFinger1ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
-const leftFinger2ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
-const leftFinger3ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
-const leftThumbFingerConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
+// ---------------------- FINGERS CONNECTION GEOMETRY-----------------------------
+const Finger1ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
+const Finger2ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
+const Finger3ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
+const ThumbFingerConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
 
-// ----------------------LEFT FINGERS CONNECTION MATERIAL-----------------------------
-const leftFinger1ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-const leftFinger2ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-const leftFinger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-const leftThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
+// ----------------------FINGERS CONNECTION MATERIAL-----------------------------
+const Finger1ConnectionHandMaterial = new THREE.MeshBasicMaterial({color:0xaea758});
+const Finger2ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const Finger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
 //----------------------------------------- MESH AND PIVOT SECTION---------------------------------
 // mesh left Arm
-const leftArm = new THREE.Mesh(leftArmGeometry, leftArmMaterial);
+const leftArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 leftArm.position.set(-7, 7, -5);
 scene.add(leftArm);
 
@@ -221,85 +205,70 @@ scene.add(leftArm);
 const leftShoulderPivot = new THREE.Object3D();
 leftShoulderPivot.position.set(-1.8, 0, 0);
 leftArm.add(leftShoulderPivot);
-// leftShoulderPivot.add(axesHelper)
 
 //shpere for the shoulder 
-const leftShoulderSphere = new THREE.Mesh(leftShoulderSphereGeometry, leftShoulderSphereMaterial);
+const leftShoulderSphere = new THREE.Mesh(ShoulderSphereGeometry, ShoulderSphereMaterial);
 scene.add(leftShoulderSphere);
 leftShoulderPivot.add(leftShoulderSphere)
 
-// leftShoulderSphere.add(axesHelper)
-
 // add pivot to connect the shpere with the left forearm
 const leftForeArmPivot = new THREE.Object3D();
-leftForeArmPivot.position.x = 0;
-leftForeArmPivot.position.y = 0;
-
 leftShoulderSphere.add(leftForeArmPivot);
-leftShoulderSphere.position.x = 0
-// leftForeArmPivot.add(axesHelper);
 
 //mesh left forearm
-const leftForeArm = new THREE.Mesh(leftForeArmGeometry, leftForeArmMaterial); 
+const leftForeArm = new THREE.Mesh(ForeArmGeometry, ForeArmMaterial); 
 leftForeArm.position.z = 4;
 leftForeArmPivot.add(leftForeArm);
 
 //  add pivot to the end of the left forearm
 const SecondleftForeArmPivot = new THREE.Object3D();
-SecondleftForeArmPivot.position.x = 0;
 SecondleftForeArmPivot.position.y = 3.4;
 leftForeArm.add(SecondleftForeArmPivot)
-// SecondleftForeArmPivot.add(axesHelper);
 
 //mesh left hand
-const leftHand = new THREE.Mesh(leftHandGeometry, leftHandMaterial);
-leftHand.position.x = 0;
+const leftHand = new THREE.Mesh(HandGeometry, HandMaterial);
+leftHand.position.y = 0.4;
 SecondleftForeArmPivot.add(leftHand);
 
 // pivot for the left hand
 const leftHandPivot = new THREE.Object3D(); 
-leftHandPivot.position.x = 0;
-leftHandPivot.position.y = 0;
 leftHand.add(leftHandPivot);
-// leftHandPivot.add(axesHelper);
 
 // pivot for the first finger left hand connection
 const leftFinger1ConnectionPivot = new THREE.Object3D();
 leftHand.add(leftFinger1ConnectionPivot);
-leftFinger1ConnectionPivot.position.x = 0.8;
-leftFinger1ConnectionPivot.position.y = .8;
-// leftFinger1ConnectionPivot.add(axesHelper);
+leftFinger1ConnectionPivot.position.x = 0.75;
+leftFinger1ConnectionPivot.position.y = 1.05;
 
 // pivot for the second finger left hand connection
 const leftFinger2ConnectionPivot = new THREE.Object3D();
 leftHand.add(leftFinger2ConnectionPivot);
-leftFinger2ConnectionPivot.position.x = -0.1;
-leftFinger2ConnectionPivot.position.y = .8;
-// leftFinger2ConnectionPivot.add(axesHelper);
+leftFinger2ConnectionPivot.position.x = -0.05;
+leftFinger2ConnectionPivot.position.y = 1.05;
 
 // pivot for the third finger left hand connection
 const leftFinger3ConnectionPivot = new THREE.Object3D();
 leftHand.add(leftFinger3ConnectionPivot);
-leftFinger3ConnectionPivot.position.x = -0.8;
-leftFinger3ConnectionPivot.position.y = .8;
-// leftFinger3ConnectionPivot.add(axesHelper);
+leftFinger3ConnectionPivot.position.x = -0.75;
+leftFinger3ConnectionPivot.position.y = 1.05;
 
 // pivot for the thumb finger left hand connection
 const leftThumbFingerConnectionPivot = new THREE.Object3D();
 leftHand.add(leftThumbFingerConnectionPivot);
-leftThumbFingerConnectionPivot.position.x = -0.8;
-leftThumbFingerConnectionPivot.position.y = .8;
-leftThumbFingerConnectionPivot.add(axesHelper);
+leftThumbFingerConnectionPivot.position.x = -0.5;
+leftThumbFingerConnectionPivot.position.y = 0.1;
 
-
-const leftFinger1Connection = new THREE.Mesh(leftFinger1ConnectionHandGeometry, leftFinger1ConnectionHandMaterial);
+const leftFinger1Connection = new THREE.Mesh(Finger1ConnectionHandGeometry, Finger1ConnectionHandMaterial);
 leftFinger1ConnectionPivot.add(leftFinger1Connection);
 
-const leftFinger2Connection = new THREE.Mesh(leftFinger2ConnectionHandGeometry, leftFinger2ConnectionHandMaterial);
+const leftFinger2Connection = new THREE.Mesh(Finger2ConnectionHandGeometry, Finger2ConnectionHandMaterial);
 leftFinger2ConnectionPivot.add(leftFinger2Connection);
 
-const leftFinger3Connection = new THREE.Mesh(leftFinger3ConnectionHandGeometry, leftFinger3ConnectionHandMaterial);
+const leftFinger3Connection = new THREE.Mesh(Finger3ConnectionHandGeometry, Finger3ConnectionHandMaterial);
 leftFinger3ConnectionPivot.add(leftFinger3Connection);
+
+const leftThumbFingerConnection = new THREE.Mesh(ThumbFingerConnectionHandGeometry, ThumbFingerConnectionHandMaterial);
+leftThumbFingerConnectionPivot.add(leftThumbFingerConnection);
 
 // add pivot to connect the shpere to the first finger left hand
 const connectFirstLeftFingerPivot = new THREE.Object3D();
@@ -313,72 +282,91 @@ leftFinger2Connection.add(connectSecondLeftFingerPivot);
 const connectThirdLeftFingerPivot = new THREE.Object3D();
 leftFinger3Connection.add(connectThirdLeftFingerPivot);
 
+// add pivot to connect the shpere to the thumb finger left hand
+const connectLeftThumbFingerPivot = new THREE.Object3D();
+leftThumbFingerConnectionPivot.add(connectLeftThumbFingerPivot);
+
 // mesh first finger left hand
-const firstFingerLeftHand = new THREE.Mesh(leftFinger1HandGeometry, leftFinger1HandMaterial);
+const firstFingerLeftHand = new THREE.Mesh(Finger1HandGeometry, Finger1HandMaterial);
 connectFirstLeftFingerPivot.add(firstFingerLeftHand);
-connectFirstLeftFingerPivot.rotation.x = 30;
 connectFirstLeftFingerPivot.position.y = 1;
 
 //// mesh second finger left hand
-const secondFingerLeftHand = new THREE.Mesh(leftFinger2HandGeometry, leftFinger2HandMaterial);
+const secondFingerLeftHand = new THREE.Mesh(Finger2HandGeometry, Finger2HandMaterial);
 connectSecondLeftFingerPivot.add(secondFingerLeftHand);
-connectSecondLeftFingerPivot.rotation.x = 30;
 connectSecondLeftFingerPivot.position.y = 1;
 
 // mesh third finger left hand
-const thirdFingerLeftHand = new THREE.Mesh(leftFinger3HandGeometry, leftFinger3HandMaterial);
+const thirdFingerLeftHand = new THREE.Mesh(Finger3HandGeometry, Finger3HandMaterial);
 connectThirdLeftFingerPivot.add(thirdFingerLeftHand);
-connectThirdLeftFingerPivot.rotation.x = 30;
 connectThirdLeftFingerPivot.position.y = 1;
+
+// // mesh thumb finger left hand
+const thumbFingerLeftHand = new THREE.Mesh(ThumbFingerHandGeometry, ThumbFingerHandMaterial);
+leftThumbFingerConnection.add(thumbFingerLeftHand);
+leftThumbFingerConnection.position.x = -0.7;
+
 
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
-// velocity of the movement of the arm and fingers
-let velocityMovement = 0.004;
-let controlLeftFingers = 0.01;
-// rotation forms
+let velocityMovementArm = 0.004;
+let velocityMovementFingers = 0.01;
+
+// rotations
 leftArm.rotation.x = 1.55;
 leftShoulderSphere.rotation.x = 3.17;
 leftForeArm.rotation.x = 1.55;
 leftFinger1Connection.rotation.x = 3.17;
 leftFinger2Connection.rotation.x = 3.17;
 leftFinger3Connection.rotation.x = 3.17;
+leftThumbFingerConnection.rotation.y = 30;
+leftForeArm.rotation.y = 25
+
 // rotation pivots
 leftShoulderPivot.rotation.x = 1.55;
 leftForeArmPivot.rotation.x = 70;
 leftFinger1ConnectionPivot.rotation.x = 3;
 leftFinger2ConnectionPivot.rotation.x = 3;
 leftFinger3ConnectionPivot.rotation.x = 3;
+connectFirstLeftFingerPivot.rotation.x = 30;
+connectSecondLeftFingerPivot.rotation.x = 30;
+connectThirdLeftFingerPivot.rotation.x = 30;
 
 // to animate the left shoulder
 let animateLeftArm = () => {
     // rotation of the left shoulder on x axis
-    leftShoulderSphere.rotation.x += velocityMovement;
+    leftShoulderSphere.rotation.x += velocityMovementArm;
 
     if (leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) {
 // to control the rotation
-    velocityMovement = velocityMovement * -1    
+    velocityMovementArm = velocityMovementArm * -1    
+}
 }
 
-}
-
-// to animate the fingers of the left hand
-let animateFingersLeftHand = () => {
+// to animate the fingers
+let animateFingers = () => {
  // rotation of the first finger of left hand on x axis
-    leftFinger1Connection.rotation.x += controlLeftFingers;
+    leftFinger1Connection.rotation.x += velocityMovementFingers;
+    leftFinger2Connection.rotation.x += velocityMovementFingers;
+    leftFinger3Connection.rotation.x += velocityMovementFingers;
+    // leftThumbFingerConnection.rotation.y += controlLeftFingers;
 
-    if (leftFinger1Connection.rotation.x < 1.55 || leftFinger1Connection.rotation.x > 3.17) {
+
+    if ((leftFinger1Connection.rotation.x < 1.55 || leftFinger1Connection.rotation.x > 3.17) && 
+         (leftFinger2Connection.rotation.x < 1.55 || leftFinger2Connection.rotation.x > 3.17) &&
+         (leftFinger3Connection.rotation.x < 1.55 || leftFinger3Connection.rotation.x > 3.17) 
+    ) {
 // to control the rotation
-    controlLeftFingers = controlLeftFingers * -1    
+    velocityMovementFingers = velocityMovementFingers * -1    
 }
 }
-  
+
 let animate = () => {
     requestAnimationFrame(animate)
 
     // animateLeftArm()
-    // to animate fingers of the left hand
-//   animateFingersLeftHand()
+    // to animate the fingers
+    // animateFingers()
 
     // mouth.rotation.x -= 0.05;
 

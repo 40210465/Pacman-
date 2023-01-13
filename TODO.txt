@@ -8,13 +8,13 @@ rotate the pivots of the left arm / articulated left arm  (x)
 
 rotate the pivots for the left fingers hand / articulated left hand (x)
 
-rotate the pivots for the right fingers hand / articulated right hand ()
+rotate the pivots for the right fingers hand / articulated right hand (x)
 
-rotate the pivots of the right arm / articulated right arm ()
+rotate the pivots of the right arm / articulated right arm (x)
 
 set the right position of the pivot for the left shoulder (x)
 
-make the right arm for the pacman with pivots for articulated movement ()
+make the right arm for the pacman with pivots for articulated movement (x)
 
 insert a black sphere inside the pacman to hide the objects pivots for the shoulders (x)
 
