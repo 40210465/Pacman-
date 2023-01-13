@@ -62,71 +62,56 @@ const axesHelper = new THREE.AxesHelper( size );
 
 // -----------------------------------GEOMETRIES AND MATERIALS-----------------------
 
-// HEAD GEOMETRY AND MATERIAL
+// HEAD
 const headGeometry = new THREE.SphereGeometry( 8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-
+const headGeometry2 = new THREE.SphereGeometry( 8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
 const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });                 
 
-const headGeometry2 = new THREE.SphereGeometry(
-    8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2
-    );
-    
+// BRAIN
 const brainGeometry = new THREE.SphereGeometry(7.91, 32, 32, 0, Math.PI, 0, Math.PI);
-
 const brainMaterial = new THREE.MeshBasicMaterial( {color: 0x0000} );
 
-// MOUTH GEOMETRY AND MATERIAL
+// MOUTH
 const mouthGeometry = new THREE.SphereGeometry(8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
 const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 
-// EYES GEOMETRY AND MATERIAL
+// EYES
 const EyeGeometry = new THREE.SphereGeometry(1, 12, 12);
 const EyeMaterial = new THREE.MeshBasicMaterial({color: 0x0000 });
 
-// ARMS AND SHOULDERS GEOMETRY
+// ARMS
 const ArmGeometry = new THREE.BoxGeometry(6, 2.4, 2.8);
 const ShoulderSphereGeometry = new THREE.SphereGeometry(1, 12, 12);
 
-// FOREARMS GEOMETRY
+// FOREARMS
 const ForeArmGeometry = new THREE.CylinderGeometry(0.53, 0.87, 6, 44, 25, 0, 6.28);
+const ForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
-// HANDS GEOMETRY
+// HANDS
 const HandGeometry = new THREE.BoxGeometry(2, 1.95, 1);
+const HandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: false});
 
-// FINGERS GEOMETRY
+// FINGERS AND THERE CONNECTIONS
 const Finger1HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const Finger2HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const Finger3HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const ThumbFingerHandGeometry = new THREE.BoxGeometry( 0.55, 0.5, 1.75);
-
-// ARMS AND SHOULDERS MATERIAL
-const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114, wireframe: false });
-const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-
-// FOREARMS MATERIAL
-const ForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-
-// HANDS MATERIAL
-const HandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: false});
- 
-// ---------------------- FINGERS MATERIAL-----------------------------
-const Finger1HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const Finger2HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const Finger3HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-const ThumbFingerHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
-
-// ---------------------- FINGERS CONNECTION GEOMETRY-----------------------------
 const Finger1ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
 const Finger2ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
 const Finger3ConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
 const ThumbFingerConnectionHandGeometry = new THREE.SphereGeometry( 0.2, 32, 32);
-
-// ----------------------FINGERS CONNECTION MATERIAL-----------------------------
+const Finger1HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const Finger2HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const Finger3HandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
+const ThumbFingerHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 const Finger1ConnectionHandMaterial = new THREE.MeshBasicMaterial({color:0xaea758});
 const Finger2ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 const Finger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
+// ARMS AND SHOULDERS
+const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114, wireframe: false });
+const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
 
 //----------------------------------------- MESH AND PIVOT SECTION---------------------------------
 // -------------------------------- LEFT SIDE BODY ----
