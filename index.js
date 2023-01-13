@@ -168,7 +168,7 @@ const Finger3HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
 const ThumbFingerHandGeometry = new THREE.BoxGeometry( 0.55, 0.5, 1.75);
 
 // ------------------------MATERIAL  ARM------------------------------
-const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114 });
+const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114, wireframe: false });
 const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
 
 // ----------------------  FOREARM MATERIAL -----------------------------
@@ -196,6 +196,7 @@ const Finger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea7
 const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
 //----------------------------------------- MESH AND PIVOT SECTION---------------------------------
+// -------------------------------- LEFT SIDE BODY ------------------------------------
 // mesh left Arm
 const leftArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
 leftArm.position.set(-7, 7, -5);
@@ -206,9 +207,8 @@ const leftShoulderPivot = new THREE.Object3D();
 leftShoulderPivot.position.set(-1.8, 0, 0);
 leftArm.add(leftShoulderPivot);
 
-//shpere for the shoulder 
+//shpere for the left shoulder 
 const leftShoulderSphere = new THREE.Mesh(ShoulderSphereGeometry, ShoulderSphereMaterial);
-scene.add(leftShoulderSphere);
 leftShoulderPivot.add(leftShoulderSphere)
 
 // add pivot to connect the shpere with the left forearm
@@ -229,10 +229,6 @@ leftForeArm.add(SecondleftForeArmPivot)
 const leftHand = new THREE.Mesh(HandGeometry, HandMaterial);
 leftHand.position.y = 0.4;
 SecondleftForeArmPivot.add(leftHand);
-
-// pivot for the left hand
-const leftHandPivot = new THREE.Object3D(); 
-leftHand.add(leftHandPivot);
 
 // pivot for the first finger left hand connection
 const leftFinger1ConnectionPivot = new THREE.Object3D();
@@ -305,24 +301,138 @@ connectThirdLeftFingerPivot.position.y = 1;
 const thumbFingerLeftHand = new THREE.Mesh(ThumbFingerHandGeometry, ThumbFingerHandMaterial);
 leftThumbFingerConnection.add(thumbFingerLeftHand);
 leftThumbFingerConnection.position.x = -0.7;
+// -------------------------------- RIGHT SIDE BODY -------------------------------------
+// mesh right Arm
+const rightArm = new THREE.Mesh(ArmGeometry, ArmMaterial);
+rightArm.position.set(7, 7, -5);
+scene.add(rightArm);
 
+// add pivot on the begin of the right arm/shoulder
+const rightShoulderPivot = new THREE.Object3D();
+rightShoulderPivot.position.set(1.8, 0, 0);
+rightArm.add(rightShoulderPivot);
 
+//shpere for the right shoulder 
+const rightShoulderSphere = new THREE.Mesh(ShoulderSphereGeometry, ShoulderSphereMaterial);
+rightShoulderPivot.add(rightShoulderSphere)
+
+// add pivot to connect the shpere with the right forearm
+const rightForeArmPivot = new THREE.Object3D();
+rightShoulderSphere.add(rightForeArmPivot);
+
+//mesh right forearm
+const rightForeArm = new THREE.Mesh(ForeArmGeometry, ForeArmMaterial); 
+rightForeArm.position.y = -0.1;
+rightForeArm.position.z = 4;
+rightForeArmPivot.add(rightForeArm);
+
+//  add pivot to the end of the right forearm
+const SecondrightForeArmPivot = new THREE.Object3D();
+SecondrightForeArmPivot.position.y = 3.4;
+rightForeArm.add(SecondrightForeArmPivot)
+
+//mesh right hand
+const rightHand = new THREE.Mesh(HandGeometry, HandMaterial);
+rightHand.position.y = 0.4;
+SecondrightForeArmPivot.add(rightHand);
+
+// pivot for the first finger right hand connection
+const rightFinger1ConnectionPivot = new THREE.Object3D();
+rightHand.add(rightFinger1ConnectionPivot);
+rightFinger1ConnectionPivot.position.x = 0.75;
+rightFinger1ConnectionPivot.position.y = 1.05;
+
+// pivot for the second finger right hand connection
+const rightFinger2ConnectionPivot = new THREE.Object3D();
+rightHand.add(rightFinger2ConnectionPivot);
+rightFinger2ConnectionPivot.position.x = -0.05;
+rightFinger2ConnectionPivot.position.y = 1.05;
+
+// pivot for the third finger right hand connection
+const rightFinger3ConnectionPivot = new THREE.Object3D();
+rightHand.add(rightFinger3ConnectionPivot);
+rightFinger3ConnectionPivot.position.x = -0.75;
+rightFinger3ConnectionPivot.position.y = 1.05;
+
+// pivot for the thumb finger right hand connection
+const rightThumbFingerConnectionPivot = new THREE.Object3D();
+rightHand.add(rightThumbFingerConnectionPivot);
+rightThumbFingerConnectionPivot.position.x = 0.8;
+rightThumbFingerConnectionPivot.position.y = 0.1;
+
+const rightFinger1Connection = new THREE.Mesh(Finger1ConnectionHandGeometry, Finger1ConnectionHandMaterial);
+rightFinger1ConnectionPivot.add(rightFinger1Connection);
+
+const rightFinger2Connection = new THREE.Mesh(Finger2ConnectionHandGeometry, Finger2ConnectionHandMaterial);
+rightFinger2ConnectionPivot.add(rightFinger2Connection);
+
+const rightFinger3Connection = new THREE.Mesh(Finger3ConnectionHandGeometry, Finger3ConnectionHandMaterial);
+rightFinger3ConnectionPivot.add(rightFinger3Connection);
+
+const rightThumbFingerConnection = new THREE.Mesh(ThumbFingerConnectionHandGeometry, ThumbFingerConnectionHandMaterial);
+rightThumbFingerConnectionPivot.add(rightThumbFingerConnection);
+
+// add pivot to connect the shpere to the first finger right hand
+const connectFirstRightFingerPivot = new THREE.Object3D();
+rightFinger1Connection.add(connectFirstRightFingerPivot);
+
+// add pivot to connect the shpere to the second finger right hand
+const connectSecondRightFingerPivot = new THREE.Object3D();
+rightFinger2Connection.add(connectSecondRightFingerPivot);
+
+// add pivot to connect the shpere to the third finger right hand
+const connectThirdRightFingerPivot = new THREE.Object3D();
+rightFinger3Connection.add(connectThirdRightFingerPivot);
+
+// add pivot to connect the shpere to the thumb finger right hand
+const connectRightThumbFingerPivot = new THREE.Object3D();
+rightThumbFingerConnectionPivot.add(connectRightThumbFingerPivot);
+
+// mesh first finger right hand
+const firstFingerRightHand = new THREE.Mesh(Finger1HandGeometry, Finger1HandMaterial);
+connectFirstRightFingerPivot.add(firstFingerRightHand);
+connectFirstRightFingerPivot.position.y = 1;
+
+//// mesh second finger right hand
+const secondFingerRightHand = new THREE.Mesh(Finger2HandGeometry, Finger2HandMaterial);
+connectSecondRightFingerPivot.add(secondFingerRightHand);
+connectSecondRightFingerPivot.position.y = 1;
+
+// mesh third finger right hand
+const thirdFingerRightHand = new THREE.Mesh(Finger3HandGeometry, Finger3HandMaterial);
+connectThirdRightFingerPivot.add(thirdFingerRightHand);
+connectThirdRightFingerPivot.position.y = 1;
+
+// // mesh thumb finger right hand
+const thumbFingerRightHand = new THREE.Mesh(ThumbFingerHandGeometry, ThumbFingerHandMaterial);
+rightThumbFingerConnection.add(thumbFingerRightHand);
+rightThumbFingerConnection.position.x = 0.7;
 // ------------------------------------------------------------------------------------
 //--------------------------------------- ANIMATION SECTION----------------------------
 let velocityMovementArm = 0.004;
 let velocityMovementFingers = 0.01;
 
-// rotations
+// rotations left side body
 leftArm.rotation.x = 1.55;
 leftShoulderSphere.rotation.x = 3.17;
 leftForeArm.rotation.x = 1.55;
+leftForeArm.rotation.y = 25
 leftFinger1Connection.rotation.x = 3.17;
 leftFinger2Connection.rotation.x = 3.17;
 leftFinger3Connection.rotation.x = 3.17;
 leftThumbFingerConnection.rotation.y = 30;
-leftForeArm.rotation.y = 25
 
-// rotation pivots
+// rotations right side body
+rightArm.rotation.x = 1.55;
+rightShoulderSphere.rotation.x = 3.17;
+rightForeArm.rotation.x = 1.55;
+rightForeArm.rotation.y = 25
+rightFinger1Connection.rotation.x = 3.17;
+rightFinger2Connection.rotation.x = 3.17;
+rightFinger3Connection.rotation.x = 3.17;
+rightThumbFingerConnection.rotation.y = 30;
+
+// rotation pivots left side body
 leftShoulderPivot.rotation.x = 1.55;
 leftForeArmPivot.rotation.x = 70;
 leftFinger1ConnectionPivot.rotation.x = 3;
@@ -332,12 +442,26 @@ connectFirstLeftFingerPivot.rotation.x = 30;
 connectSecondLeftFingerPivot.rotation.x = 30;
 connectThirdLeftFingerPivot.rotation.x = 30;
 
-// to animate the left shoulder
-let animateLeftArm = () => {
+// rotation pivots right side body
+rightShoulderPivot.rotation.x = 1.55;
+rightForeArmPivot.rotation.x = 70;
+rightFinger1ConnectionPivot.rotation.x = 3;
+rightFinger2ConnectionPivot.rotation.x = 3;
+rightFinger3ConnectionPivot.rotation.x = 3;
+connectFirstRightFingerPivot.rotation.x = 30;
+connectSecondRightFingerPivot.rotation.x = 30;
+connectThirdRightFingerPivot.rotation.x = 30;
+
+// to animate the arms/shoulders
+let animateArmShoulders = () => {
     // rotation of the left shoulder on x axis
     leftShoulderSphere.rotation.x += velocityMovementArm;
+    // rotation of the right shoulder on x axis
+    rightShoulderSphere.rotation.x += velocityMovementArm;
 
-    if (leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) {
+    if ((leftShoulderSphere.rotation.x < 1.55 || leftShoulderSphere.rotation.x > 3.17) &&
+    (rightShoulderSphere.rotation.x < 1.55 || rightShoulderSphere.rotation.x > 3.17)) 
+    {
 // to control the rotation
     velocityMovementArm = velocityMovementArm * -1    
 }
@@ -345,17 +469,22 @@ let animateLeftArm = () => {
 
 // to animate the fingers
 let animateFingers = () => {
- // rotation of the first finger of left hand on x axis
+ // rotation of the fingers of left hand on x axis
     leftFinger1Connection.rotation.x += velocityMovementFingers;
     leftFinger2Connection.rotation.x += velocityMovementFingers;
     leftFinger3Connection.rotation.x += velocityMovementFingers;
-    // leftThumbFingerConnection.rotation.y += controlLeftFingers;
-
+ // rotation of the fingers of right hand on x axis
+    rightFinger1Connection.rotation.x += velocityMovementFingers;
+    rightFinger2Connection.rotation.x += velocityMovementFingers;
+    rightFinger3Connection.rotation.x += velocityMovementFingers;
 
     if ((leftFinger1Connection.rotation.x < 1.55 || leftFinger1Connection.rotation.x > 3.17) && 
          (leftFinger2Connection.rotation.x < 1.55 || leftFinger2Connection.rotation.x > 3.17) &&
-         (leftFinger3Connection.rotation.x < 1.55 || leftFinger3Connection.rotation.x > 3.17) 
-    ) {
+         (leftFinger3Connection.rotation.x < 1.55 || leftFinger3Connection.rotation.x > 3.17) && 
+        (rightFinger1Connection.rotation.x < 1.55 || rightFinger1Connection.rotation.x > 3.17) &&
+        (rightFinger2Connection.rotation.x < 1.55 || rightFinger2Connection.rotation.x > 3.17) &&
+        (rightFinger3Connection.rotation.x < 1.55 || rightFinger3Connection.rotation.x > 3.17) 
+         ) {
 // to control the rotation
     velocityMovementFingers = velocityMovementFingers * -1    
 }
@@ -364,11 +493,11 @@ let animateFingers = () => {
 let animate = () => {
     requestAnimationFrame(animate)
 
-    // animateLeftArm()
+    animateArmShoulders()
     // to animate the fingers
-    // animateFingers()
+    animateFingers()
 
-    // mouth.rotation.x -= 0.05;
+    mouth.rotation.x -= 0.05;
 
     controls.update()
     renderer.render(scene, camera);
