@@ -65,7 +65,7 @@ const axesHelper = new THREE.AxesHelper( size );
 // HEAD
 const headGeometry = new THREE.SphereGeometry( 8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
 const headGeometry2 = new THREE.SphereGeometry( 8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });                 
+const headMaterial = new THREE.MeshBasicMaterial({ color: 0x6FF801 });                 
 
 // BRAIN
 const brainGeometry = new THREE.SphereGeometry(7.91, 32, 32, 0, Math.PI, 0, Math.PI);
@@ -73,7 +73,7 @@ const brainMaterial = new THREE.MeshBasicMaterial( {color: 0x0000} );
 
 // MOUTH
 const mouthGeometry = new THREE.SphereGeometry(8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0x6FF801 });
 
 // EYES
 const EyeGeometry = new THREE.SphereGeometry(1, 12, 12);
@@ -89,7 +89,7 @@ const ForeArmMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
 // HANDS
 const HandGeometry = new THREE.BoxGeometry(2, 1.95, 1);
-const HandMaterial = new THREE.MeshBasicMaterial({color:0xdbc114, wireframe: false});
+const HandMaterial = new THREE.MeshBasicMaterial({color:0x1E9B1C, wireframe: false});
 
 // FINGERS AND THERE CONNECTIONS
 const Finger1HandGeometry = new THREE.BoxGeometry( 0.5, 0.95, 2.35);
@@ -110,7 +110,7 @@ const Finger3ConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea7
 const ThumbFingerConnectionHandMaterial = new THREE.MeshBasicMaterial({color: 0xaea758});
 
 // ARMS AND SHOULDERS
-const ArmMaterial = new THREE.MeshBasicMaterial({color: 0xdbc114, wireframe: false });
+const ArmMaterial = new THREE.MeshBasicMaterial({color: 0x1E9B1C, wireframe: false });
 const ShoulderSphereMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
 
 //----------------------------------------- MESH AND PIVOT SECTION---------------------------------
